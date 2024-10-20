@@ -29,11 +29,17 @@ class StackByLinkedList {
   // 삭제: 비어있으면 undefined 리턴, 비어있지 않으면 가장 최상단 노드를 삭제 후 반환
   pop() {
     if (!this.head) return undefined;
-    else {
+    const poppedValue = this.tail.value;
+    if (this.head === this.tail) {
+      // 노드가 하나일 때
+      this.head = null;
+      this.tail = null;
+    } else {
       this.tail = this.tail.prev;
       this.tail.next = null;
-      this.length--;
     }
+    this.length--;
+    return poppedValue;
   }
 
   // 맨 위 원소 조회: 비어있으면 undefined, 비어있지 않으면 맨 위 원소를 반환
@@ -45,7 +51,7 @@ class StackByLinkedList {
   }
 
   // 스택 길이
-  get length() {
+  getLength() {
     return this.length;
   }
 }
@@ -56,5 +62,5 @@ sl.push(20);
 sl.push(30);
 sl.pop();
 console.log(sl.top().value);
-console.log(sl.length);
+console.log(sl.getLength());
 console.log(sl);
